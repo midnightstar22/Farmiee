@@ -1,5 +1,6 @@
 import './App.css';
 import Home from './screens/Home';
+import Recommendation from './screens/Recommendation';
 import{
   BrowserRouter as Router,
   Routes,
@@ -18,7 +19,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home/>}/>
         <Route exact path="/login" element={<Login/>}/>
-
+        <Route exact path='/Recommendation' element={<Recommendation />} />
       </Routes>
     </div>
     </Router>
