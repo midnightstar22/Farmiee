@@ -26,16 +26,18 @@ export default function Navbar() {
                 <Link className="nav-link active" to="/about">About</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/profile">Profile</Link>
+              <Link className="nav-link" to="/recommendation">Recommendation</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/login">Login</Link>
+              <Link className="nav-link" to="/nearby-store">Nearby Store</Link>
+
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/recommendation">Recommendation</Link>
+              <Link className="nav-link" to="/profile">Profile</Link>
+
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/nearby-store">Nearby Store</Link>
+              <Link className="nav-link" to="/login">Login</Link>
               </li>
             </ul>
           </div>
