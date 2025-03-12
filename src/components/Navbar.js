@@ -26,7 +26,7 @@ export default function Navbar() {
                 <Link className="nav-link active" to="/about">About</Link>
               </li>
               <li className="nav-item">
-              <Link className="nav-link" to="/weather">Weather</Link>
+              <Link className="nav-link" to="/Forecasting">Weather</Link>
 
               </li>
               <li className="nav-item">
