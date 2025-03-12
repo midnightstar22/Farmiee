@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Cloud, CloudRain, CloudLightning, Sun, Wind, Droplets, Search } from 'lucide-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const API_KEY = "YOUR_API_KEY"; // Replace with your OpenWeatherMap API Key
+const API_KEY = "dc45fd9866453b89bfcfa98bc372635d"; // Replace with your OpenWeatherMap API Key
 
 const Forecasting = () => {
   const [location, setLocation] = useState('Brooklyn, New York, USA');
@@ -18,7 +18,7 @@ const Forecasting = () => {
   const fetchWeather = async (city) => {
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${dc45fd9866453b89bfcfa98bc372635d}&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
       );
       const data = await response.json();
 
