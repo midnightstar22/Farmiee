@@ -27,6 +27,7 @@ function App() {
         <Route exact path="/nearby-store" element={<Store/>}/>
         <Route exact path="/profile" element={<Profile/>}/>
         <Route exact path="/signup" element={<Signup/>}/>
+        <Route exact path="/Forecasting" element={<Forecasting/>}/>
 
       </Routes>
     </div>
