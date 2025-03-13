@@ -1,0 +1,48 @@
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.metrics import accuracy_score, classification_report
+import joblib
+
+# Load dataset
+file_path = "Updated_Fertilizer_Prediction_Kerala.csv"  # Change this path if needed
+df = pd.read_csv(file_path)
+
+# Encode categorical variables
+categorical_columns = ["Soil Type", "District", "City", "Crop Type"]
+df = pd.get_dummies(df, columns=categorical_columns)
+
+# Define features (X) and target variable (y)
+X = df.drop(columns=["Fertilizer Name"])
+y = df["Fertilizer Name"]
+
+# Encode target variable
+label_encoder = LabelEncoder()
+y = label_encoder.fit_transform(y)
+
+# Split into train and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train Random Forest model
+rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
+rf_model.fit(X_train, y_train)
+
+# Predict and evaluate
+y_pred = rf_model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+report = classification_report(y_test, y_pred, target_names=label_encoder.classes_)
+print(f"Model Accuracy: {accuracy:.2f}")
+print("\nClassification Report:\n", report)
+
+
+
+joblib.dump(rf_model, "fertilizer_model.pkl")
+joblib.dump(label_encoder, "label_encoder.pkl")
+joblib.dump(OneHotEncoder, "one_hot_encoder.pkl")
+from google.colab import files
+
+files.download("fertilizer_model.pkl")
+files.download("label_encoder.pkl")
+files.download("one_hot_encoder.pkl")
