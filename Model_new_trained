@@ -1,0 +1,60 @@
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import accuracy_score, classification_report
+
+# Load dataset (Update file path if needed)
+file_path = "Updated_Fertilizer_Prediction_Kerala.csv"  # Update path
+df = pd.read_csv(file_path)
+
+df.columns = df.columns.str.strip()
+# Drop unnecessary column
+df = df.drop(columns=['District'])
+
+# Encode categorical features
+label_encoders = {}
+categorical_columns = ['SoilType', 'CropType', 'City', 'Fertilizer Name']
+
+for col in categorical_columns:
+    le = LabelEncoder()
+    df[col] = le.fit_transform(df[col])
+    label_encoders[col] = le  # Store encoders for later decoding
+
+# Correlation heatmap
+plt.figure(figsize=(10, 6))
+sns.heatmap(df.corr(), annot=True, cmap="coolwarm", fmt=".2f", linewidths=0.5)
+plt.title("Feature Correlation Heatmap")
+plt.show()
+
+# Define features and target variable
+X = df.drop(columns=["Fertilizer Name"])  # Features
+y = df["Fertilizer Name"]  # Target variable
+
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train Random Forest Classifier
+rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
+rf_model.fit(X_train, y_train)
+
+# Predictions
+y_pred = rf_model.predict(X_test)
+
+# Decode predictions back to original fertilizer labels
+y_pred_labels = label_encoders["Fertilizer Name"].inverse_transform(y_pred)
+y_test_labels = label_encoders["Fertilizer Name"].inverse_transform(y_test)
+
+# Model Evaluation
+accuracy = accuracy_score(y_test_labels, y_pred_labels)
+print(f"Accuracy Score: {accuracy * 100:.2f}%")
+
+print("\nClassification Report:\n")
+print(classification_report(y_test_labels, y_pred_labels))
+
+# Save the trained model
+import joblib
+joblib.dump(rf_model, "model.pkl")
