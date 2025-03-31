@@ -151,7 +151,7 @@ const FertilizerStoreLocator = () => {
 
     if (!window.google) {
       script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDNL7TjRCN8K2WJsxFN0_AYHUAyitzAfzo&libraries=places`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=key&libraries=places`;
       script.async = true;
       script.defer = true;
       
