@@ -6,7 +6,7 @@ import{
   Route,
 } from "react-router-dom";
 import Login from'./screens/Login';
-import Store from './screens/Store';
+import Nearby from './screens/Nearby';
 import Profile from './screens/Profile'
 import Signup  from './screens/Signup';
 import Recommendation from './screens/Recommendation';
@@ -28,6 +28,10 @@ function App() {
         <Route exact path="/profile" element={<Profile/>}/>
         <Route exact path="/signup" element={<Signup/>}/>
         <Route exact path="/Forecasting" element={<Forecasting/>}/>
+  <Route 
+            path="/nearby-store" 
+            element={<Nearby apiKey="AIzaSyDNL7TjRCN8K2WJsxFN0_AYHUAyitzAfzo" stores={stores} />}
+          />
 
       </Routes>
     </div>
