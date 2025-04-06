@@ -7,7 +7,7 @@ from sklearn.preprocessing import LabelEncoder
 from flask_cors import CORS  # <-- Add this import
 
 app = Flask(__name__)
-CORS(app, resources={r"/recommend": {"origins": "http://localhost:5173"}})  # <-- Allow only your frontend
+CORS(app, resources={r"/recommend": {"origins": "http://localhost:3000"}})  # <-- Allow only your frontend
 
 # Load the trained model bundle
 model_data = joblib.load('model.pkl')
@@ -16,7 +16,7 @@ label_encoders = model_data['label_encoders']
 feature_names = model_data['feature_names']
 
 # Weather API Configuration
-WEATHER_API_KEY = 'dc45fd9866453b89bfcfa98bc372635d'
+WEATHER_API_KEY = 'c1bd6787317aafa1517681dec78e8f8f'
 BASE_WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?"
 
 # Soil data (should match your training data)
